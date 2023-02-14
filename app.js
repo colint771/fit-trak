@@ -7,6 +7,11 @@ const session = require('express-session');
 const MemoryStore = require('memorystore')(session);
 const bodyParser = require('body-parser');
 const createError = require('http-errors');
+// var connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'Billions61230'
+// });
 
 
 // Import the routes
@@ -45,16 +50,16 @@ app.engine('handlebars', hbs.engine);
 app.use(session({
     cookie: { maxAge: 86400000 },
     store: new MemoryStore({
-      checkPeriod: 86400000 // prune expired entries every 24h
+      checkPeriod: 86400000
     }),
     secret: 'supersecret'
 }))
-/* // Use the express sessions package
-app.use(session({
-    secret: 'supersecret',
-    resave: true,
-    saveUninitialized: true
-})); */
+ // Use the express sessions package
+//  app.use(session({
+//      secret: 'supersecret',
+//      resave: true,
+//      saveUninitialized: true
+//  })); 
 
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -70,15 +75,16 @@ const isEqual = (a, b, opts) => {
 }
 
 
-
 // Connects to an existing mysql server
 const connection = mysql.createPool({
     host: process.env.NODE_ENV === "production" ? process.env.DB_HOSTNAME : 'localhost',
     user: process.env.NODE_ENV === "production" ? process.env.DB_USER : 'root',
-    password: process.env.NODE_ENV === "production" ? process.env.DB_PASSWORD : 'password',
-    database: process.env.NODE_ENV === "production" ? process.env.DATABASE : 'fitnessapp',
+    password: process.env.NODE_ENV === "production" ? process.env.DB_PASSWORD : 'Billions61230',
+    database: process.env.NODE_ENV === "production" ? process.env.DATABASE : 'fittrak',
     port: '3306'
 });
+
+console.log(connection);
 // Check the connection to the db is working
 connection.getConnection(function (err) {
     if (err) throw err;
