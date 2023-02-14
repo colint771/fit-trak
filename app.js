@@ -76,7 +76,9 @@ const isEqual = (a, b, opts) => {
 
 
 // Connects to an existing mysql server
+require('dotenv').config();
 const connection = mysql.createPool({
+    connectionLimit : 10,
     host: process.env.NODE_ENV === "production" ? process.env.DB_HOSTNAME : 'localhost',
     user: process.env.NODE_ENV === "production" ? process.env.DB_USER : 'root',
     password: process.env.NODE_ENV === "production" ? process.env.DB_PASSWORD : 'Billions61230',
@@ -84,7 +86,6 @@ const connection = mysql.createPool({
     port: '3306'
 });
 
-console.log(connection);
 // Check the connection to the db is working
 connection.getConnection(function (err) {
     if (err) throw err;

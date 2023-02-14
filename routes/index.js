@@ -68,7 +68,7 @@ const macroCalc = (carbs, calories, weight) => {
 const connection = mysql.createPool({
     host: process.env.NODE_ENV === "production" ? process.env.DB_HOSTNAME : 'localhost',
     user: process.env.NODE_ENV === "production" ? process.env.DB_USER : 'root',
-    password: process.env.NODE_ENV === "production" ? process.env.DB_PASSWORD : 'password',
+    password: process.env.NODE_ENV === "production" ? process.env.DB_PASSWORD : 'Billions61230',
     database: process.env.NODE_ENV === "production" ? process.env.DATABASE : 'fittrak',
     port: '3306'
 });
