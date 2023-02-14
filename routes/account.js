@@ -1,7 +1,8 @@
 const express = require('express');
 let router = express.Router();
 const bcrypt = require('bcryptjs');
-const mysql = require('mysql');
+const mysql = require('mysql');//check
+const sequelize = require('../config/connection');//check
 
 const upperFirst = (string) => {
     let firstLetter = string.charAt(0);
@@ -12,13 +13,14 @@ const upperFirst = (string) => {
 }
 
 // Connects to an existing mysql server
-const connection = mysql.createPool({
-    host: process.env.NODE_ENV === "production" ? process.env.DB_HOSTNAME : 'localhost',
-    user: process.env.NODE_ENV === "production" ? process.env.DB_USER : 'root',
-    password: process.env.NODE_ENV === "production" ? process.env.DB_PASSWORD : 'password',
-    database: process.env.NODE_ENV === "production" ? process.env.DATABASE : 'fitnessapp',
-    port: '3306'
-});
+// //check
+// const connection = mysql.createPool({
+//     host: process.env.NODE_ENV === "production" ? process.env.DB_HOSTNAME : 'localhost',
+//     user: process.env.NODE_ENV === "production" ? process.env.DB_USER : 'root',
+//     password: process.env.NODE_ENV === "production" ? process.env.DB_PASSWORD : 'password',
+//     database: process.env.NODE_ENV === "production" ? process.env.DATABASE : 'fitnessapp',
+//     port: '3306'
+// });
 // Check the connection to the db is working
 connection.getConnection(function (err) {
     if (err) throw err;

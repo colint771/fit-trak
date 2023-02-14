@@ -1,8 +1,10 @@
 const express = require('express');
 let router = express.Router();
-const mysql = require('mysql');
+const mysql = require('mysql');//check
+const sequelize = require('../config/connection');//check
 
 // Connects to an existing mysql server
+//check
 const connection = mysql.createPool({
     host: process.env.NODE_ENV === "production" ? process.env.DB_HOSTNAME : 'localhost',
     user: process.env.NODE_ENV === "production" ? process.env.DB_USER : 'root',

@@ -2,7 +2,8 @@ const express = require('express');
 const app = express();
 const port = process.env.PORT || 3000;
 const handlebars = require('express-handlebars');
-const mysql = require('mysql');
+const mysql = require('mysql');//check
+const sequelize = require('../config/connection');//check
 const session = require('express-session');
 const MemoryStore = require('memorystore')(session);
 const bodyParser = require('body-parser');
@@ -72,6 +73,7 @@ const isEqual = (a, b, opts) => {
 
 
 // Connects to an existing mysql server
+//check
 const connection = mysql.createPool({
     host: process.env.NODE_ENV === "production" ? process.env.DB_HOSTNAME : 'localhost',
     user: process.env.NODE_ENV === "production" ? process.env.DB_USER : 'root',

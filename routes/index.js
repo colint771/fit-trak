@@ -1,7 +1,8 @@
 const express = require('express');
 const handlebars = require('express-handlebars');
 let router = express.Router();
-const mysql = require('mysql');
+const mysql = require('mysql');//check
+const sequelize = require('../config/connection');//check
 
 // Create the functions used to calc cals and macros
 const BMIcalc = (weight, height) => {
@@ -65,6 +66,7 @@ const macroCalc = (carbs, calories, weight) => {
 }
 
 // Connects to an existing mysql server
+//check
 const connection = mysql.createPool({
     host: process.env.NODE_ENV === "production" ? process.env.DB_HOSTNAME : 'localhost',
     user: process.env.NODE_ENV === "production" ? process.env.DB_USER : 'root',
